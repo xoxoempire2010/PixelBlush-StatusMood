@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-retro: "MS Sans Serif", "Tahoma", sans-serif;
+  --color-pastel-pink: #ffd1dc;
+  --color-pastel-blue: #b4e1ff;
+  --color-pastel-purple: #e0b3ff;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-pastel-pink)] cursor-default overflow-x-hidden;
+    font-family: var(--font-retro);
+    image-rendering: pixelated;
+  }
+
+  /* Retro Pixel Cursor */
+  .pixel-cursor {
+    cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVQ4T2NkoBAwUqifYfQA6gJ0vYyMjP+YmJj+MzAwwBfS1IDpY2Rk/M/AwMAAV0hTA6aPkZERPwO6XpA+RkbG/wwMDPCFNDVg+hgZGTmYmJhY8HsAun5GRkYpBgYAnHId9z9m9mAAAAAASUVORK5CYII='), auto;
+  }
+}
+
+@layer utilities {
+  .vhs-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 2px, 3px 100%;
+    opacity: 0.3;
+  }
+
+  .glitter-text {
+    background: linear-gradient(
+      45deg,
+      #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff
+    );
+    background-size: 400% 400%;
+    animation: glitter 5s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes glitter {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .nudge-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 10000;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 10s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% { bottom: 100%; }
+    100% { bottom: -100px; }
+  }
+}
